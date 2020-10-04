@@ -1,5 +1,7 @@
 # Starblast server list
 
+Demo : [Starblast server list](https://mesili.github.io/starblast-serverlist/)
+
 This is a little sunday project to have a better look at Starblast.io games running on the different servers.  
 There is already the [Loveship's shipyard](https://starblast-shipyard.github.io/sectorListing/) that provides a similar thing but I wanted to see the mode name instead of icons, plus there is no icon for modded games. 
 
