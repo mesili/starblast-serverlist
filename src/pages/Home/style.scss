@@ -1,0 +1,44 @@
+#Home {
+
+    max-width:900px;
+    margin:0 auto;
+
+    h3 {
+        text-transform:capitalize;
+    }
+
+    .box {
+        background: linear-gradient(-45deg,hsla(200,50%,10%,.5) 0,hsla(200,50%,50%,.15) 100%);
+        box-shadow: 0 0 6px hsla(200,100%,80%,1);
+        padding: 5px 10px;
+        margin:0 auto;
+        margin-top:10px;
+        text-transform:capitalize;
+
+        &:hover {
+            border: 0 solid hsl(200,90%,70%);
+            background: radial-gradient(ellipse at center,hsla(200,50%,0%,1) 0,hsla(200,70%,70%,.5) 200%);
+            box-shadow: 0 0 6px hsla(200,100%,80%,1);
+            text-shadow: 0 0 7px hsla(200,100%,80%,1);
+            color: #FFF;
+        }
+
+    }
+
+    #home-filters {
+        text-transform:capitalize;
+        padding:0 10px;
+        #location-filters, 
+        #modes-filters {
+            width:100%;
+        }
+
+        h3 {
+            margin-top:0;
+        }
+        input[type='checkbox'] {
+            margin-left:1em;
+            margin-right:.5em;
+        }
+    }
+}

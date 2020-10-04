@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'Play';
+  src: url('/fonts/Play-Regular.ttf')  format('truetype');
+}
+
+body {
+    font-family: Play, sans-serif;
+    font-size:16px;
+    color:#FEFEFE;
+    background:#101010;
+    padding:1em;
+}
+
+a {
+    color: hsl(200,50%,80%);
+    &:hover {
+        color:#FFF;
+    }
+    &:visited {
+        color: hsl(200,50%,60%);
+    }
+}
+
+#root {
+}
+

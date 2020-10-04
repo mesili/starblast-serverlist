@@ -1,0 +1,30 @@
+section.location {
+    padding:10px;
+    table {
+        width:100%;
+        thead {
+            td {
+                font-weight:bold;
+                text-align:center;
+            }
+        }
+        tbody {
+            td:nth-child(4), /* Players */
+            td:nth-child(5), /* Time */
+            td:nth-child(6){ /* Criminality */
+                text-align:right;
+            }
+        }
+    }
+
+    @media screen and (max-width:800px){
+
+        thead, 
+        tbody{
+            td:nth-child(2),
+            td:nth-child(6){
+                display:none;
+            }
+        }
+    }
+}
