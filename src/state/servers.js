@@ -37,13 +37,17 @@ export const servers = (state = defaultState, {type, payload}) => {
         [constants.SET]: () => {
             const modes = { ...state.modes }
             const regions = Object.keys(payload)
+            const locations = {}
             /* Populating modes with available ones */
             regions.forEach(e => {
                 const systems = payload[e] || []
-                systems.forEach(b => {
+                locations[e] = systems
+                    .sort((a,b) => b.players - a.players)
+                    .map(b => {
                     const actual_mode = b.mod_id || b.mode
                     if (modes[actual_mode] === undefined) 
                         modes[actual_mode] = true
+                    return b
                 })
             })
 
