@@ -8,7 +8,10 @@ import './style.scss'
 
 
 export const Home =  () => {
+
     const dispatch = useDispatch()
+
+    /* Server retrieval */
     useEffect(() => { 
         const loadServers = () => getServers()
             .then(groupByLocation)
@@ -16,6 +19,12 @@ export const Home =  () => {
         loadServers()
         const retrieval = setInterval(() => loadServers(), 20000)
         return () => clearInterval(retrieval)
+    }, [ dispatch ])
+
+    /* Location tick */
+    useEffect(() => {
+        const tick = setInterval(() => dispatch(actions.tick()), 1000)
+        return () => clearInterval(tick)
     }, [ dispatch ])
 
     const { locations, regions } = useSelector( state => state.servers )

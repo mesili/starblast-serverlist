@@ -30,7 +30,7 @@ export const LocationEntry = ({name, systems={}}) => {
                     {Object.keys(systems)
                             .filter(filterMode)
                             .sort((a,b) => parseInt(systems[b].players) - parseInt(systems[a].players))
-                                .map((e,i) => <SystemEntry key={i} {...systems[e]} />)}
+                                .map((e,i) => <SystemEntry key={i} region={name} idx={i} />)}
                             </tbody>
                         </table>
                     </section>

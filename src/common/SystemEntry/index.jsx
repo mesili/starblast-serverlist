@@ -1,34 +1,31 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 
 export const SystemEntry = ({
-    id,
-    name,
-    time,
-    mode,
-    mod_id,
-    address,
-    players,
-    criminal_activity,
+    region,
+    idx,
 }) => {
 
-    const [elaspedTime, updateTime] = useState(time)
+    const system = useSelector(state => state.servers.locations[region][idx])
+    const { id,
+        name,
+        time,
+        mode,
+        mod_id,
+        address,
+        players,
+        criminal_activity,
+    } = system
 
-
-    /* Time is fixed, let's make it more alive */
-    useEffect(() => {
-        const timer = setInterval(()=> updateTime(elaspedTime + 1),1000)
-        return () => clearInterval(timer)
-    }, [elaspedTime])
-
-    const minutes = Math.floor(elaspedTime / 60)
-    const seconds = elaspedTime - (minutes * 60)
+    const minutes = Math.floor(time / 60)
+    const seconds = time - (minutes * 60)
 
     /* Coloring the criminality level */
     const rgb = [
         255, 
-        255 - criminal_activity * 20,
-        255 - criminal_activity * 20,
+        255 - criminal_activity * 42,
+        255 - criminal_activity * 42,
     ]
     const criminalStyle = {
         color: `rgb(${rgb[0]}, ${rgb[1] < 0 ? 0 : rgb[1]}, ${rgb[2] < 0 ? 0 : rgb[2]})`
