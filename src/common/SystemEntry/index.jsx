@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 
 
@@ -13,7 +13,6 @@ export const SystemEntry = ({
         time,
         mode,
         mod_id,
-        address,
         players,
         criminal_activity,
     } = system
