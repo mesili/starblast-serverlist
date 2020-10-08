@@ -1,6 +1,7 @@
 export const getServers = async () => {
     const simstatus = 'https://starblast.io/simstatus.json'
-    return await fetch(simstatus).then(r => r.json())
+    const servers = await fetch(simstatus).then(r => r.json())
+    return groupByLocation(servers)
 }
 
 export const groupByLocation = servers => {
