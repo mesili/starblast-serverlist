@@ -1,33 +1,14 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { serverFilter } from 'state/serversSlice'
-
-
-const FilterEntry = ({field, name, value, action}) => {
-    const dispatch = useDispatch()
-    const filter = (field, name, value) => dispatch(serverFilter({field, name, value}))
-    return (
-        <>
-            <input 
-                id={name}
-                type={"checkbox"}
-                name={"filters[]"}
-                onChange={()=> filter(field, name, !value)} 
-                checked={value}
-            />
-            <label htmlFor={name}>
-                {name} 
-            </label>
-        </>
-    )
-}
+import Filter from 'common/Filter'
 
 const LocationFilters = ({action, items}) => (
     <div className="box">
         <div id="locations-filters">
             <h3>Locations Filters</h3>
             {Object.keys(items).sort().map((e,i) => (
-                <FilterEntry 
+                <Filter
                     key={i}
                     name={e}
                     value={items[e]}
@@ -39,14 +20,15 @@ const LocationFilters = ({action, items}) => (
     </div>
 )
 
-const ModeFilters = ({action, items}) => (
+const ModeFilters = ({action, items, mods}) => (
     <div className="box">
         <div id="modes-filters">
             <h3>Modes Filters</h3>
             {Object.keys(items).sort().map((e,i) => (
-                <FilterEntry 
+                <Filter
                     key={i}
                     name={e}
+                    label={`${mods[e] ? "mod: " : ""} ${e}`}
                     value={items[e]}
                     action={action}
                     field={'modes'}
@@ -56,14 +38,13 @@ const ModeFilters = ({action, items}) => (
     </div>
 )
 
-
 const HomeFilters = () => {
-    const { regions, modes } = useSelector(state => state.servers)
-    
+    const { regions, modes, mods } = useSelector(state => state.servers)
+
     return (
         <div id="home-filters">
-            <LocationFilters action="region" items={regions} />
-            <ModeFilters action="mode" items={modes} />
+            {Object.keys(regions).length && (<LocationFilters action="region" items={regions} />)}
+            {Object.keys(modes).length && (<ModeFilters action="mode" items={modes} mods={mods} />)}
         </div>
     )
 }
