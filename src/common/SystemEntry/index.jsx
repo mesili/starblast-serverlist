@@ -1,21 +1,16 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 
 
 export const SystemEntry = ({
     region,
-    idx,
+    id,
+    name,
+    time,
+    mode,
+    mod_id,
+    players,
+    criminal_activity,
 }) => {
-
-    const system = useSelector(state => state.servers.locations[region][idx])
-    const { id,
-        name,
-        time,
-        mode,
-        mod_id,
-        players,
-        criminal_activity,
-    } = system
 
     const minutes = Math.floor(time / 60)
     const seconds = time - (minutes * 60)
