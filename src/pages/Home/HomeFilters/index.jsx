@@ -1,6 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { serverFilter } from 'state/serversSlice'
+import { useSelector } from 'react-redux'
 import Filter from 'common/Filter'
 
 const LocationFilters = ({action, items}) => (

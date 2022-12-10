@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { serverFilter } from 'state/serversSlice'
 
 export const Filter = ({field, name, label, value, action}) => {
