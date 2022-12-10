@@ -4,19 +4,10 @@ import { getServers } from 'helpers/servers'
 const initialState = {
     loading:false,
     error:null,
-    locations:[],
-    regions:{
-        'america':true,
-        'europe':true,
-        'brazil':true,
-        'asia':true,
-    },
-    modes:{
-        'team':true, 
-        'survival':true,
-        'deathmatch':true,
-        'invasion':true,
-    },
+    locations:{},
+    regions:{},
+    modes:{},
+    mods: {},
 }
 
 const servers = createSlice({
@@ -32,12 +23,17 @@ const servers = createSlice({
             const locKeys = Object.keys(locations)
             const newLocations = {}
             locKeys.forEach(e => {
+                state.regions[e] = state.regions[e] === false ? false : true;
                 newLocations[e] = (locations[e] || [])
                     .sort((a,b) => b.players - a.players)
                     .map(b => {
                         const actual_mode = b.mod_id || b.mode
-                        if (state.modes[actual_mode] === undefined) 
+                        if (b.mod_id && !state.mods[b.mod_id]) {
+                            state.mods[b.mod_id] = true;
+                        }
+                        if (state.modes[actual_mode] === undefined) {
                             state.modes[actual_mode] = true
+                        }
                         return b
                     })
             })
