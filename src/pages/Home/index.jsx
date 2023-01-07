@@ -25,28 +25,28 @@ export const Home =  () => {
 
     const { locations, regions } = useSelector( state => state.servers )
 
-    const filterRegion = e => undefined === regions[e] || true === regions[e]
+    const filterRegion = ([region]) => undefined === regions[region] || true === regions[region]
 
-    const mapLocations = (e,i) => (
-        <LocationEntry 
-            key={i} 
-            name={e} 
-            systems={{...locations[e]}} 
-        />
-    )
+    const filteredLocations = Object.entries(locations)
+        .sort((a,b) => a.region - b.region)
+        .filter(filterRegion)
+
 
     return (
         <section id="Home">
-            <HomeFilters />
+            <HomeFilters filteredLocations={filteredLocations} />
             <h2>Locations</h2>
-            {
-                Object.keys(locations)
-                    .sort()
-                    .filter(filterRegion)
-                    .map(mapLocations)
-            }
+            <Locations items={filteredLocations} />
         </section>
     )
 }
+
+const Locations = ({items}) => items.map(([region, systems], i) => (
+    <LocationEntry 
+        key={i} 
+        name={region} 
+        systems={systems}
+    />
+))
 
 export default Home

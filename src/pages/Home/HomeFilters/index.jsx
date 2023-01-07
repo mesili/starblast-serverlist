@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Filter from 'common/Filter'
 
-const LocationFilters = ({action, items}) => (
+const LocationFilters = ({action, items}) =>  (
     <div className="box">
         <div id="locations-filters">
             <h3>Locations Filters</h3>
@@ -37,13 +37,22 @@ const ModeFilters = ({action, items, mods}) => (
     </div>
 )
 
-const HomeFilters = () => {
+const HomeFilters = ({filteredLocations}) => {
     const { regions, modes, mods } = useSelector(state => state.servers)
+
+    const filteredModes = filteredLocations
+        .map(([_, systems]) => systems.map(e => e.mod_id || e.mode))
+        .flat()
+    const uniqueFilteredModes = [...new Set(filteredModes)]
+
+    const onlyFilteredModes = Object.fromEntries(Object.entries(modes)
+        .filter(([mode]) => uniqueFilteredModes.indexOf(mode) > -1)
+    )
 
     return (
         <div id="home-filters">
-            {!Object.keys(regions).length ? null : (<LocationFilters action="region" items={regions} />)}
-            {!Object.keys(modes).length ? null : (<ModeFilters action="mode" items={modes} mods={mods} />)}
+            <LocationFilters action="region" items={regions} />
+            <ModeFilters action="mode" items={onlyFilteredModes} mods={mods} />
         </div>
     )
 }
