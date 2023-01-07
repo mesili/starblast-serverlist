@@ -9,6 +9,7 @@ import './style.scss'
 export const Home =  () => {
 
     const dispatch = useDispatch()
+
     /* Server retrieval */
     useEffect(() => { 
         dispatch(fetchServers())

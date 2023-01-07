@@ -42,8 +42,8 @@ const HomeFilters = () => {
 
     return (
         <div id="home-filters">
-            {Object.keys(regions).length && (<LocationFilters action="region" items={regions} />)}
-            {Object.keys(modes).length && (<ModeFilters action="mode" items={modes} mods={mods} />)}
+            {!Object.keys(regions).length ? null : (<LocationFilters action="region" items={regions} />)}
+            {!Object.keys(modes).length ? null : (<ModeFilters action="mode" items={modes} mods={mods} />)}
         </div>
     )
 }
